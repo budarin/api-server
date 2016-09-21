@@ -1,0 +1,38 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "description": "api-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "check-security": "nsp check --output summary",
+    "check-security-formatted": "nsp check --output checkstyle",
+    "check-updates": "updtr",
+    "build-server": "rm server-production -r -f & md server-production && babel server.js --out-file ./server-production/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/budarin/api-server.git"
+  },
+  "author": "Vadim Budarin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geekplux/koa2-boilerplate/issues"
+  },
+  "homepage": "https://github.com/budarin/api-server#readme",
+  "dependencies": {
+    "koa": "^2.0.0-alpha.7",
+    "koa-router": "^7.0.1"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-preset-node6": "^11.0.0",
+    "babel-register": "^6.14.0",
+    "nsp": "^2.6.1",
+    "nsp-formatter-checkstyle": "^1.0.1",
+    "updtr": "^0.2.1"
+  }
+}
