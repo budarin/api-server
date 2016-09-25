@@ -30,31 +30,31 @@ pool.on('error', function (err, client) {
 });
 
 router
-    .get('/', async (ctx, next) => {
+    .get('/', async (ctx) => {
         const p = await new Promise((resolve, reject) => {
             pool.connect(function(err, client, done) {
                 if(err) {
                     //return console.error('error fetching client from pool', err);
                     return reject(err);
                 }
-                client.query('SELECT now()', function(err, result) {
+                client.query('SELECT * FROM pg_catalog.pg_tables', function(err, result) {
                     //call `done()` to release the client back to the pool
                     done();
 
                     if(err) {
                         return reject(err);
                     }
-                    resolve(result.rows[0]);
+                    resolve(result);
                 });
             });
         });
 
-        ctx.body = p.now.toISOString();
+        ctx.body = p.rows;
     })
-    .get('/foo', async (ctx, next) => {
+    .get('/foo', async (ctx) => {
         ctx.body = 'Hello World Foo';
     })
-    .get('/err', async (ctx, next) => {
+    .get('/err', async (ctx) => {
         throw new Error('lalala');
     });
 
