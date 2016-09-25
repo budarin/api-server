@@ -16,7 +16,7 @@ router
 	ctx.body = 'Hello World Foo';
 });
 
-app.listen(3000, () => console.log('server started 3000'));
+app.listen(80, () => console.log('server started 80'));
 
 export default app;
 

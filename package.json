@@ -9,7 +9,22 @@
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "check-updates": "updtr",
-    "build-server": "rm server-production -r -f & md server-production && babel server.js --out-file ./server-production/server.js"
+    "build": "better-npm-run build-server",
+    "start:prod": "better-npm-run build-server && better-npm-run start-prod"
+  },
+  "betterScripts": {
+    "build-server": {
+      "command": "rm build -r -f & md build && babel server.js --out-file ./build/server.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "start-prod": {
+      "command": "node ./build/server.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -22,11 +37,13 @@
   },
   "homepage": "https://github.com/budarin/api-server#readme",
   "dependencies": {
+    "better-npm-run": "0.0.11",
     "koa": "^2.0.0-alpha.7",
     "koa-router": "^7.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-cli": "^6.14.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-preset-node6": "^11.0.0",
