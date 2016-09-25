@@ -1,20 +1,14 @@
 import Koa from 'koa';
-import koa_router from 'koa-router';
+import err from './middleware/error';
+import logger from './middleware/logger';
+import { routes, allowedMethods } from './middleware/routes';
 
-const
-	app = new Koa(),
-	router = koa_router();
+const app = new Koa();
 
-app.use(router.routes());
-app.use(router.allowedMethods());
-
-router
-.get('/', function (ctx) {
-	ctx.body = 'Hello World';
-})
-.get('/foo', function (ctx) {
-	ctx.body = 'Hello World Foo';
-});
+app.use(err);
+app.use(logger);
+app.use(routes());
+app.use(allowedMethods());
 
 app.listen(80, () => console.log('server started 80'));
 

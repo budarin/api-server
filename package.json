@@ -20,7 +20,7 @@
       }
     },
     "start-prod": {
-      "command": "node ./build/server.js",
+      "command": "./scripts/build.sh",
       "env": {
         "NODE_ENV": "production"
       }
@@ -33,12 +33,14 @@
   "author": "Vadim Budarin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/geekplux/koa2-boilerplate/issues"
+    "url": "https://github.com/budarin/api-server/issues"
   },
   "homepage": "https://github.com/budarin/api-server#readme",
   "dependencies": {
     "better-npm-run": "0.0.11",
     "koa": "^2.0.0-alpha.7",
+    "koa-body": "^1.5.0",
+    "koa-convert": "^1.2.0",
     "koa-router": "^7.0.1"
   },
   "devDependencies": {
