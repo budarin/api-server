@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rm -r ./build
+rm -r -f ./build
 mkdir ./build
 ./node_modules/.bin/babel server.js --out-file ./build/server.js
 

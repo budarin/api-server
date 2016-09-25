@@ -14,13 +14,13 @@
   },
   "betterScripts": {
     "build-server": {
-      "command": "rm build -r -f & md build && babel server.js --out-file ./build/server.js",
+      "command": "sh ./scripts/build.sh",
       "env": {
         "NODE_ENV": "production"
       }
     },
     "start-prod": {
-      "command": "./scripts/build.sh",
+      "command": "node ./build/server.js",
       "env": {
         "NODE_ENV": "production"
       }
