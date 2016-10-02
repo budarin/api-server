@@ -38,7 +38,7 @@ export default pool => async (ctx) => {
         meta = data.meta,
         result = data.result;
 
-    if (status <= 200) {
+    if (status === 200) {
         ctx.body = result;
 
         // если указана информация о кэшировании - кешируем результат
