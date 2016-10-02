@@ -2,7 +2,7 @@ import getLogger from '../libs/log';
 
 const
     log = getLogger(module),
-    handle500 = async (ctx, next) => {
+    error = async (ctx, next) => {
         try {
             await next();
 
@@ -28,4 +28,4 @@ const
         }
     };
 
-export default handle500;
+export default error;
