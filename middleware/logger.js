@@ -9,8 +9,6 @@ const
 
         try {
             await next();
-            const ms = new Date() - start;
-            log.info(`${IP} ${ ctx.method } ${ ctx.url } - ${ ms }ms`);
 
             if (ctx.status === 404) { ctx.throw(404); }
         } catch (err) {
@@ -32,6 +30,9 @@ const
                 };
             }
         }
+
+        const ms = new Date() - start;
+        log.info(`${IP} ${ ctx.method } ${ ctx.url } - ${ ms }ms`);
     };
 
 export default logger;
