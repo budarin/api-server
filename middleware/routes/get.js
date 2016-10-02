@@ -1,8 +1,7 @@
 import getLogger from '../../libs/log';
 import cache from '../../libs/cache';
 
-const
-    log = getLogger(module);
+const log = getLogger(module);
 
 export default pool => async (ctx) => {
     const
@@ -14,7 +13,7 @@ export default pool => async (ctx) => {
             method,
             params
         },
-        data = await new Promise((resolve, reject) => {
+        dbResponse = await new Promise((resolve, reject) => {
             pool.connect(function(err, client, done) {
                 if(err) {
                     log.error('error fetching client from pool', err);
@@ -34,18 +33,19 @@ export default pool => async (ctx) => {
                 });
             });
         }),
-        status = data.status,
-        meta = data.meta,
-        result = data.result;
+        status = dbResponse.status,
+        meta = dbResponse.meta,
+        result = dbResponse.result;
 
     if (status === 200) {
         ctx.body = result;
 
         // если указана информация о кэшировании - кешируем результат
-        if (meta.max_age) {
-            cache(ctx, meta.max_age);
+        if (meta.maxAage) {
+            cache(ctx, meta.maxAge);
         }
     } else {
-        throw new Error(data.error);
+        ctx.status = status;
+        ctx.body = dbResponse.message;
     }
 };
