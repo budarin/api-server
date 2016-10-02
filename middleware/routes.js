@@ -1,3 +1,4 @@
+import getLogger from '../libs/log';
 import Router from 'koa-router';
 import convert from 'koa-convert';
 import KoaBody from 'koa-body';
@@ -9,14 +10,15 @@ var config = {
     password: 'wwwboy123', //env var: PGPASSWORD
     host: 'localhost', // Server hosting the postgres database
     port: 5432, //env var: PGPORT
-    max: 10, // max number of clients in the pool
+    max: 50, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
 const
     router = new Router(),
     koaBody = convert(KoaBody()),
-    pool = new pg.Pool(config);
+    pool = new pg.Pool(config),
+    log = getLogger(module);
 
 pool.on('error', function (err, client) {
     // if an error is encountered by a client while it sits idle in the pool
@@ -25,9 +27,11 @@ pool.on('error', function (err, client) {
     // this is a rare occurrence but can happen if there is a network partition
     // between your application and the database, the database restarts, etc.
     // and so you might want to handle it and at least log it out
-    console.error('idle client error', err.message, err.stack);
+    log.error('idle client error', err.message, err.stack);
     throw err;
 });
+
+//TODO: проверять на корректность параметры вызова и если некорректны - выдаем ошибку
 
 router
     .get('/', async (ctx) => {
@@ -38,7 +42,8 @@ router
                     //return console.error('error fetching client from pool', err);
                     return reject(err);
                 }
-                client.query('SELECT tablename FROM pg_catalog.pg_tables', function(err, result) {
+                //client.query('SELECT * FROM root($1::json)', [{ method: 'dfdf' }], function(err, result) {
+                client.query('SELECT * FROM pg_catalog.pg_tables', [], function(err, result) {
                     //call `done()` to release the client back to the pool
                     done();
 

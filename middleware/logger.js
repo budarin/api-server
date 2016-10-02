@@ -1,8 +1,15 @@
-const logger = async (ctx, next) => {
-    const start = new Date();
-    await next();
-    const ms = new Date() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-};
+import getLogger from '../libs/log';
+
+const
+    log = getLogger(module),
+    logger = async (ctx, next) => {
+        const
+            start = new Date(),
+            IP = ctx.ips.length > 0 ? ctx.ips[ctx.ips.length - 1] : ctx.ip;
+
+        await next();
+        const ms = new Date() - start;
+        log.info(`${IP} ${ ctx.method } ${ ctx.url } - ${ ms }ms`);
+    };
 
 export default logger;
