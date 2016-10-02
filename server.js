@@ -1,6 +1,5 @@
 import Koa from 'koa';
 import getLogger from './libs/getLogger';
-import error from './middleware/error';
 import logger from './middleware/logger';
 import { routes, allowedMethods } from './middleware/routes';
 
@@ -10,7 +9,6 @@ const
 
 app
     .use(logger)
-    .use(error)
     .use(routes())
     .use(allowedMethods())
     .listen(80, () => log.info('server started 80'));
