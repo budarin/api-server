@@ -1,27 +1,51 @@
+import getLogger from '../../libs/log';
+import cache from '../../libs/cache';
+
+const
+    log = getLogger(module);
+
 export default pool => async (ctx) => {
     const
-        result = await new Promise((resolve, reject) => {
+        entity = ctx.params.entity,
+        method = ctx.params.method,
+        params = ctx.request.query || {},
+        payload = {
+            entity,
+            method,
+            params
+        },
+        data = await new Promise((resolve, reject) => {
             pool.connect(function(err, client, done) {
                 if(err) {
-                    //return console.error('error fetching client from pool', err);
+                    log.error('error fetching client from pool', err);
                     return reject(err);
                 }
-                //client.query('SELECT * FROM root($1::json)', [{ method: 'dfdf' }], function(err, result) {
-                client.query('SELECT * FROM pg_catalog.pg_tables', [], function(err, result) {
-                    //call `done()` to release the client back to the pool
-                    done();
+
+                log.info('query params', payload);
+
+                client.query('SELECT * FROM www_root($1::json)', [payload], function(err, result) {
+                    done(); // call `done()` to release the client back to the pool
 
                     if(err) {
+                        log.error('error executing db_query', err);
                         return reject(err);
                     }
-                    resolve(result);
+                    resolve(result.rows[0].www_root);
                 });
             });
         }),
-        getTableNames = (result, item) => {
-            result.push(item.tablename);
-            return result;
-        };
+        status = data.status,
+        meta = data.meta,
+        result = data.result;
 
-    ctx.body = result.rows.reduce(getTableNames, []);
+    if (status <= 200) {
+        ctx.body = result;
+
+        // если указана информация о кэшировании - кешируем результат
+        if (meta.max_age) {
+            cache(ctx, meta.max_age);
+        }
+    } else {
+        throw new Error(data.error);
+    }
 };

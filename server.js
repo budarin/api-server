@@ -9,13 +9,13 @@ const
     app = new Koa(),
     log = getLogger(module);
 
-app.use(logger);
-app.use(handle500);
-app.use(handle404);
-app.use(routes());
-app.use(allowedMethods());
-
-app.listen(80, () => log.info('server started 80'));
+app
+    .use(logger)
+    .use(handle500)
+    .use(handle404)
+    .use(routes())
+    .use(allowedMethods())
+    .listen(80, () => log.info('server started 80'));
 
 export default app;
 

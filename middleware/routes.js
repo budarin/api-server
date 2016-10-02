@@ -13,6 +13,7 @@ const
 
 router
     .get('/', welcome)
+    .get('/api/', welcome)
     .get('/api/:entity/:method/', getRoute(pool))
     .post('/api/:entity/', postRoute(pool))
     .put('/api/:entity/', putRoute(pool))

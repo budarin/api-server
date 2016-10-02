@@ -11,7 +11,7 @@ const
             // will only respond with JSON
             ctx.status = err.status || 500;
             ctx.body = {
-                message: `Internal error: ${err.message}`,
+                message: `Internal error`,
                 resultCode: 'Error',
                 trackingId: String(Math.random()).split('.')[1]
             };
