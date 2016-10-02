@@ -9,9 +9,9 @@ const
     app = new Koa(),
     log = getLogger(module);
 
-app.use(handle404);
-app.use(handle500);
 app.use(logger);
+app.use(handle500);
+app.use(handle404);
 app.use(routes());
 app.use(allowedMethods());
 

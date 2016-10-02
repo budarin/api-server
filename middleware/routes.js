@@ -1,14 +1,15 @@
+import Router from 'koa-router';
+import pg from 'pg';
 import configurePgPool from '../libs/configurePgPool';
 import dontCache from '../middleware/dontCache';
 import getLogger from '../libs/log';
-import Router from 'koa-router';
-import convert from 'koa-convert';
-import KoaBody from 'koa-body';
-import pg from 'pg';
+import getRoute from './routes/get';
+import postRoute from './routes/post';
+import putRoute from './routes/put';
+import deleteRoute from './routes/delete';
 
 const
     router = new Router(),
-    koaBody = convert(KoaBody()),
     pool = configurePgPool(pg),
     log = getLogger(module);
 
@@ -18,44 +19,14 @@ router
     .get('/', dontCache, async (ctx) => {
         // временная заглушка
         ctx.body = {
-            payload: {},
+            message: 'Welcome! Our valid entry point is at: /api/.',
             resultCode: 'Ok'
         };
     })
-    .get('/api/', async (ctx) => {
-        const
-            result = await new Promise((resolve, reject) => {
-            pool.connect(function(err, client, done) {
-                if(err) {
-                    //return console.error('error fetching client from pool', err);
-                    return reject(err);
-                }
-                //client.query('SELECT * FROM root($1::json)', [{ method: 'dfdf' }], function(err, result) {
-                client.query('SELECT * FROM pg_catalog.pg_tables', [], function(err, result) {
-                    //call `done()` to release the client back to the pool
-                    done();
-
-                    if(err) {
-                        return reject(err);
-                    }
-                    resolve(result);
-                });
-            });
-        }),
-        getTableNames = (result, item) => {
-            result.push(item.tablename);
-            return result;
-        };
-
-        ctx.body = result.rows.reduce(getTableNames, []);
-
-    })
-    .get('/api/foo', async (ctx) => {
-        ctx.body = 'Hello World Foo';
-    })
-    .get('/api/err', async (ctx) => {
-        throw new Error('lalala');
-    });
+    .get('/api/:entity/:method/', getRoute(pool))
+    .post('/api/:entity/', postRoute(pool))
+    .put('/api/:entity/', putRoute(pool))
+    .delete('/api/:entity/', deleteRoute(pool));
 
 const
     routes = () => router.routes(),
