@@ -45,7 +45,6 @@ export default pool => async (ctx) => {
             cache(ctx, meta.maxAge);
         }
     } else {
-        ctx.status = status;
-        ctx.body = dbResponse.message;
+        throw new Error(dbResponse.message);
     }
 };

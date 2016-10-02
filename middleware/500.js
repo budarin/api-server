@@ -8,8 +8,7 @@ const
         } catch (err) {
             log.error(err.message);
 
-            // will only respond with JSON
-            ctx.status = err.status || 500;
+            ctx.status = 500;
             ctx.body = {
                 message: `Internal error`,
                 resultCode: 'Error',
