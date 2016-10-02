@@ -11,7 +11,9 @@ const
             // will only respond with JSON
             ctx.status = err.statusCode || err.status || 500;
             ctx.body = {
-                message: err.message
+                message: err.message,
+                resultCode: 'Error',
+                trackingId: String(Math.random()).split('.')[1]
             };
         }
     };

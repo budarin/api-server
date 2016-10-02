@@ -9,7 +9,7 @@
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "check-updates": "updtr",
-    "build": "better-npm-run build-server",
+    "prod": "better-npm-run build-server",
     "start:prod": "better-npm-run build-server && better-npm-run start-prod"
   },
   "betterScripts": {

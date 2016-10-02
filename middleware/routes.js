@@ -1,40 +1,28 @@
+import configurePgPool from '../libs/configurePgPool';
+import dontCache from '../middleware/dontCache';
 import getLogger from '../libs/log';
 import Router from 'koa-router';
 import convert from 'koa-convert';
 import KoaBody from 'koa-body';
 import pg from 'pg';
 
-var config = {
-    user: 'postgres', //env var: PGUSER
-    database: 'kometa_db', //env var: PGDATABASE
-    password: 'wwwboy123', //env var: PGPASSWORD
-    host: 'localhost', // Server hosting the postgres database
-    port: 5432, //env var: PGPORT
-    max: 50, // max number of clients in the pool
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
-
 const
     router = new Router(),
     koaBody = convert(KoaBody()),
-    pool = new pg.Pool(config),
+    pool = configurePgPool(pg),
     log = getLogger(module);
-
-pool.on('error', function (err, client) {
-    // if an error is encountered by a client while it sits idle in the pool
-    // the pool itself will emit an error event with both the error and
-    // the client which emitted the original error
-    // this is a rare occurrence but can happen if there is a network partition
-    // between your application and the database, the database restarts, etc.
-    // and so you might want to handle it and at least log it out
-    log.error('idle client error', err.message, err.stack);
-    throw err;
-});
 
 //TODO: проверять на корректность параметры вызова и если некорректны - выдаем ошибку
 
 router
-    .get('/', async (ctx) => {
+    .get('/', dontCache, async (ctx) => {
+        // временная заглушка
+        ctx.body = {
+            payload: {},
+            resultCode: 'Ok'
+        };
+    })
+    .get('/api/', async (ctx) => {
         const
             result = await new Promise((resolve, reject) => {
             pool.connect(function(err, client, done) {
@@ -62,10 +50,10 @@ router
         ctx.body = result.rows.reduce(getTableNames, []);
 
     })
-    .get('/foo', async (ctx) => {
+    .get('/api/foo', async (ctx) => {
         ctx.body = 'Hello World Foo';
     })
-    .get('/err', async (ctx) => {
+    .get('/api/err', async (ctx) => {
         throw new Error('lalala');
     });
 
