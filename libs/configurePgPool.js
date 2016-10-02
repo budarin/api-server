@@ -1,16 +1,10 @@
+import config from '../config.json';
 import getLogger from './getLogger';
 
 const
+    env = process.env.NODE_ENV || 'development',
     log = getLogger(module),
-    config = {
-        user: 'postgres', //env var: PGUSER
-        database: 'kometa_db', //env var: PGDATABASE
-        password: 'wwwboy123', //env var: PGPASSWORD
-        host: 'localhost', // Server hosting the postgres database
-        port: 5432, //env var: PGPORT
-        max: 50, // max number of clients in the pool
-        idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-    },
+    db_config = config[env].pg_config,
     pgPoolIdleErrorHandler = (err, client) => {
         // if an error is encountered by a client while it sits idle in the pool
         // the pool itself will emit an error event with both the error and
@@ -23,7 +17,7 @@ const
     };
 
 export default pg => {
-    const pool = new pg.Pool(config);
+    const pool = new pg.Pool(db_config);
 
     pool.on('error', pgPoolIdleErrorHandler);
     return pool;

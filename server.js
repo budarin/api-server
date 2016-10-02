@@ -1,17 +1,19 @@
 import Koa from 'koa';
+import config from './config.json';
 import getLogger from './libs/getLogger';
 import logger from './middleware/logger';
 import { routes, allowedMethods } from './middleware/routes';
 
 const
     app = new Koa(),
-    log = getLogger(module);
+    log = getLogger(module),
+    port = config[app.env].port;
 
 app
     .use(logger)
     .use(routes())
     .use(allowedMethods())
-    .listen(80, () => log.info('server started 80'));
+    .listen(port, () => log.info(`server started ${port}`));
 
 export default app;
 
