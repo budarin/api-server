@@ -1,14 +1,16 @@
 import Koa from 'koa';
-import err from './middleware/error';
+import getLogger from './libs/log';
+import handle500 from './middleware/500';
+import handle404 from './middleware/404';
 import logger from './middleware/logger';
 import { routes, allowedMethods } from './middleware/routes';
-import getLogger from './libs/log';
 
 const
     app = new Koa(),
     log = getLogger(module);
 
-app.use(err);
+app.use(handle404);
+app.use(handle500);
 app.use(logger);
 app.use(routes());
 app.use(allowedMethods());
