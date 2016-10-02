@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import getLogger from './libs/log';
+import getLogger from './libs/getLogger';
 import error from './middleware/error';
 import logger from './middleware/logger';
 import { routes, allowedMethods } from './middleware/routes';

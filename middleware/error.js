@@ -1,4 +1,4 @@
-import getLogger from '../libs/log';
+import getLogger from '../libs/getLogger';
 
 const
     log = getLogger(module),

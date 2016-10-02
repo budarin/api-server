@@ -1,4 +1,4 @@
-import getLogger from './log';
+import getLogger from './getLogger';
 
 const
     log = getLogger(module),
@@ -22,7 +22,7 @@ const
         throw err;
     };
 
-export default (pg) => {
+export default pg => {
     const pool = new pg.Pool(config);
 
     pool.on('error', pgPoolIdleErrorHandler);

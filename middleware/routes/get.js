@@ -1,6 +1,6 @@
 import dbQuery from '../../libs/dbQuery';
-import getLogger from '../../libs/log';
-import cache from '../../libs/cache';
+import getLogger from '../../libs/getLogger';
+import setCacheHeader from '../../libs/setCacheHeader';
 
 const log = getLogger(module);
 
@@ -13,7 +13,7 @@ export default pool => async (ctx) => {
         ctx.body = result;
 
         // если указана информация о кэшировании - кешируем результат
-        if (meta.maxAage) { cache(ctx, meta.maxAge); }
+        if (meta.maxAage) { setCacheHeader(ctx, meta.maxAge); }
     } else {
         throw new Error(dbResponse.message);
     }
