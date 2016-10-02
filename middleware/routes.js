@@ -13,11 +13,11 @@ const
 
 router
     .get('/', welcome)
-    .get('/api/', welcome)
-    .get('/api/:entity/:method/', getRoute(pool))
-    .post('/api/:entity/', postRoute(pool))
-    .put('/api/:entity/', putRoute(pool))
-    .delete('/api/:entity/', deleteRoute(pool));
+    .get('/api/v1/', welcome)
+    .get('/api/v1/:entity/:method/', getRoute(pool))
+    .post('/api/v1/:entity/', postRoute(pool))
+    .put('/api/v1/:entity/', putRoute(pool))
+    .delete('/api/v1/:entity/', deleteRoute(pool));
 
 const
     routes = () => router.routes(),
