@@ -12,9 +12,9 @@ const
 
             if (ctx.status === 404) { ctx.throw(404); }
         } catch (err) {
-            log.error(err.message);
-
             if (err.status === 404) {
+                log.error(`Url not found: ${ctx.url}`);
+
                 ctx.status = err.status;
                 ctx.body = {
                     message: `Url not found: ${ctx.url}`,
@@ -22,6 +22,8 @@ const
                     trackingId: String(Math.random()).split('.')[1]
                 };
             } else {
+                log.error(err.message);
+
                 ctx.status = err.status || 500;
                 ctx.body = {
                     message: `Internal error`,
