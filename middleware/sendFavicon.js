@@ -3,13 +3,8 @@ import send from 'koa-send';
 
 const oneYear = 60 * 1000 * 60;
 
-// TODO: брать иконку из /public/
-
-const sendFavicon = async (ctx, next) => {
-    console.log(path.resolve(__dirname + '/favicon.png'), { root: __dirname });
-
-    await send(ctx, './favicon.png', {
-        root: __dirname,
+const sendFavicon = async ctx  => {
+    await send(ctx, 'public/favicon.ico', {
         maxage: oneYear,
         gzip: true
     });
