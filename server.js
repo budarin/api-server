@@ -10,6 +10,7 @@ const
     port = config[app.env].port;
 
 app
+    .use(async (ctx, next) => { ctx.rootPath = __dirname; await next(); })
     .use(logger)
     .use(routes())
     .use(allowedMethods())

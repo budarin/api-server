@@ -5,7 +5,7 @@ const
     logger = async (ctx, next) => {
         const
             start = new Date(),
-            IP = ctx.ips.length > 0 ? ctx.ips[ctx.ips.length - 1] : ctx.ip;
+            IP = ctx.request.ip;
 
         try {
             await next();

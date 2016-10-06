@@ -6,6 +6,7 @@ import postRoute from './routes/post';
 import putRoute from './routes/put';
 import deleteRoute from './routes/delete';
 import welcome from './routes/welcome';
+import sendFavicon from './sendFavicon';
 
 const
     router = new Router(),
@@ -13,6 +14,8 @@ const
 
 router
     .get('/', welcome)
+    .get('/favicon.ico', sendFavicon)
+
     .get('/api/v1/', welcome)
     .get('/api/v1/:entity/:method/', getRoute(pool))
     .post('/api/v1/:entity/', postRoute(pool))
