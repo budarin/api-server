@@ -1,11 +1,10 @@
-import path from 'path';
 import send from 'koa-send';
 
-const oneYear = 60 * 1000 * 60;
+const oneMonth = 60 * 1000 * 60 * 24 * 30;
 
 const sendFavicon = async ctx  => {
     await send(ctx, 'public/favicon.ico', {
-        maxage: oneYear,
+        maxage: oneMonth,
         gzip: true
     });
 };
