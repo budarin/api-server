@@ -1,3 +1,4 @@
+import requestIp from 'request-ip';
 import getLogger from '../libs/getLogger';
 
 const
@@ -5,7 +6,7 @@ const
     logger = async (ctx, next) => {
         const
             start = new Date(),
-            IP = ctx.request.ip;
+            IP = requestIp.getClientIp(ctx.request);
 
         try {
             await next();

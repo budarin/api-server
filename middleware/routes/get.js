@@ -1,8 +1,5 @@
 import dbQuery from '../../libs/dbQuery';
-import getLogger from '../../libs/getLogger';
 import setCacheHeader from '../../libs/setCacheHeader';
-
-const log = getLogger(module);
 
 export default pool => async (ctx) => {
     const
