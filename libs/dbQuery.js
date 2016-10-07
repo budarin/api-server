@@ -4,13 +4,11 @@ const log = getLogger(module);
 
 export default async (ctx, pool) => {
     const
-        entity = ctx.params.entity,
-        method = ctx.params.method,
-        params = ctx.request.query || {},
+        { entity, method, query = {} } = ctx.params,
         payload = {
             entity,
             method,
-            params
+            params: query
         };
 
     return new Promise((resolve, reject) => {
@@ -22,7 +20,7 @@ export default async (ctx, pool) => {
 
             log.info('query params', payload);
 
-            client.query('SELECT * FROM www_root($1::json)', [payload], function(err, result) {
+            client.query('SELECT * FROM api.root($1::json)', [payload], function(err, result) {
                 done(); // call `done()` to release the client back to the pool
 
                 if (err) {
@@ -30,7 +28,7 @@ export default async (ctx, pool) => {
                     reject(new Error(err));
                 }
 
-                const ret = result.rows[0].www_root;
+                const ret = result.rows[0].root;
 
                 if (ret.status !== 200) {
                     let ex = new Error(ret.message);
