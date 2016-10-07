@@ -8,7 +8,7 @@
     "start": "node index.js",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
-    "check-updates": "updtr",
+    "upgrade": "ncu -u",
     "prod": "better-npm-run build-server",
     "start:prod": "better-npm-run build-server && better-npm-run start-prod"
   },
@@ -43,6 +43,7 @@
     "koa-convert": "^1.2.0",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
+    "oauth2orize-koa": "^1.3.2",
     "pg": "^6.1.0",
     "request-ip": "^1.2.2",
     "winston": "^2.2.0"
@@ -55,7 +56,6 @@
     "babel-preset-node6": "^11.0.0",
     "babel-register": "^6.14.0",
     "nsp": "^2.6.1",
-    "nsp-formatter-checkstyle": "^1.0.1",
-    "updtr": "^0.2.1"
+    "nsp-formatter-checkstyle": "^1.0.1"
   }
 }
