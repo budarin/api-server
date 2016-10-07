@@ -39,7 +39,7 @@
   "dependencies": {
     "better-npm-run": "0.0.11",
     "koa": "^2.0.0-alpha.7",
-    "koa-body": "^1.5.0",
+    "koa-body": "^1.6.0",
     "koa-convert": "^1.2.0",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
@@ -50,12 +50,12 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
-    "babel-cli": "^6.14.0",
+    "babel-cli": "^6.16.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-preset-node6": "^11.0.0",
-    "babel-register": "^6.14.0",
-    "nsp": "^2.6.1",
+    "babel-register": "^6.16.3",
+    "nsp": "^2.6.2",
     "nsp-formatter-checkstyle": "^1.0.1"
   }
 }
