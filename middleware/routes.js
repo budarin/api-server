@@ -11,12 +11,14 @@ import sendFile from './sendFile';
 const
     router = new Router(),
     pool = configurePgPool(pg),
-    oneMonth = 60 * 1000 * 60 * 24 * 30;
+    oneMonth = 1000 * 60 * 60 * 24 * 30,
+    sendFavicon = sendFile('public/favicon.ico', oneMonth),
+    sendRobotsTxt = sendFile('public/robots.txt', oneMonth);
 
 router
     .get('/', welcome)
-    .get('/favicon.ico', sendFile('public/favicon.ico', oneMonth))
-    .get('/robots.txt', sendFile('public/robots.txt', oneMonth))
+    .get('/favicon.ico', sendFavicon)
+    .get('/robots.txt', sendRobotsTxt)
 
     .get('/api/v1/', welcome)
     .get('/api/v1/:entity/:method/', getRoute(pool))
