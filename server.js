@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import config from './config.json';
+import config from './config';
 import getLogger from './libs/getLogger';
 import logger from './middleware/logger';
 import { routes, allowedMethods } from './middleware/routes';
@@ -7,10 +7,10 @@ import { routes, allowedMethods } from './middleware/routes';
 const
     app = new Koa(),
     log = getLogger(module),
-    port = config[app.env].port;
+    env_config = config[app.env],
+    port = env_config.port;
 
 app
-    .use(async (ctx, next) => { ctx.rootPath = __dirname; await next(); })
     .use(logger)
     .use(routes())
     .use(allowedMethods())

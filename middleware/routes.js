@@ -6,15 +6,17 @@ import postRoute from './routes/post';
 import putRoute from './routes/put';
 import deleteRoute from './routes/delete';
 import welcome from './routes/welcome';
-import sendFavicon from './sendFavicon';
+import sendFile from './sendFile';
 
 const
     router = new Router(),
-    pool = configurePgPool(pg);
+    pool = configurePgPool(pg),
+    oneMonth = 60 * 1000 * 60 * 24 * 30;
 
 router
     .get('/', welcome)
-    .get('/favicon.ico', sendFavicon)
+    .get('/favicon.ico', sendFile('public/favicon.ico', oneMonth))
+    .get('/robots.txt', sendFile('public/robots.txt', oneMonth))
 
     .get('/api/v1/', welcome)
     .get('/api/v1/:entity/:method/', getRoute(pool))
