@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import convert from 'koa-convert';
 import cors from 'koa-cors';
 import config from './config';
 import getLogger from './libs/getLogger';
@@ -16,7 +17,7 @@ const
 
 app
     .use(logger)
-    .use(cors(corsOptions))
+    .use(convert(cors(corsOptions)))
     .use(routes())
     .use(allowedMethods())
     .listen(port, () => log.info(`server started ${port}`));
