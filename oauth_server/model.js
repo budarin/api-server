@@ -97,6 +97,7 @@ const getUser = (username, password, callback) => {
 };
 
 export default {
+    getAccessToken,
     getRefreshToken,
     getClient,
     grantTypeAllowed,
