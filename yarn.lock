@@ -351,6 +351,10 @@ balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
 
+basic-auth@~0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-0.0.1.tgz#31ddb65843f6c35c6fea7beb46a987cb8ce18924"
+
 bcrypt-pbkdf@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.0.tgz#3ca76b85241c7170bf7d9703e7b9aa74630040d4"
@@ -498,7 +502,7 @@ cliclopts@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/cliclopts/-/cliclopts-1.1.1.tgz#69431c7cb5af723774b0d3911b4c37512431910f"
 
-co-body@*:
+co-body@*, co-body@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/co-body/-/co-body-4.2.0.tgz#74df20fa73262125dc45482af04e342ea8db3515"
   dependencies:
@@ -559,6 +563,10 @@ cookies@~0.6.1:
   dependencies:
     depd "~1.1.0"
     keygrip "~1.0.0"
+
+copy-to@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/copy-to/-/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
 
 core-js@^2.4.0:
   version "2.4.1"
@@ -1192,6 +1200,13 @@ koa-body@^1.6.0:
     extend "1.3.0"
     formidable "1.0.17"
 
+koa-bodyparser:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-2.2.0.tgz#22c56cde53781dea0df7f075ddd20fe0a7c53037"
+  dependencies:
+    co-body "^4.2.0"
+    copy-to "^2.0.1"
+
 koa-compose@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/koa-compose/-/koa-compose-3.1.0.tgz#f6e32f1b8953f7c87b97fc10c208fed334da76f4"
@@ -1212,6 +1227,13 @@ koa-cors@0.0.16:
 koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
+
+koa-oauth-server:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/koa-oauth-server/-/koa-oauth-server-1.0.1.tgz#2865ac435da9c5b24644fd23c5e8e8f669650004"
+  dependencies:
+    oauth2-server "^2.3.0"
+    thenify "^3.0.0"
 
 koa-router@^7.0.1:
   version "7.0.1"
@@ -1471,6 +1493,12 @@ number-is-nan@^1.0.0:
 oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
+
+oauth2-server@^2.3.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/oauth2-server/-/oauth2-server-2.4.1.tgz#da6dd054c021ec9c29439f5d1a28de63d02b716c"
+  dependencies:
+    basic-auth "~0.0.1"
 
 object-assign@^4.0.1, object-assign@^4.1.0, object-assign@4.1.0:
   version "4.1.0"
@@ -2006,7 +2034,7 @@ thenify-all@^1.0.0:
   dependencies:
     thenify ">= 3.1.0 < 4"
 
-"thenify@>= 3.1.0 < 4":
+thenify@^3.0.0, "thenify@>= 3.1.0 < 4":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.2.1.tgz#251fd1c80aff6e5cf57cb179ab1fcb724269bd11"
   dependencies:
