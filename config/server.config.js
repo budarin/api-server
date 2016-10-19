@@ -1,4 +1,4 @@
-export default {
+const serverConfig = {
     'development': {
         'port': 80,
         'pg_config': {
@@ -22,15 +22,7 @@ export default {
             'max': 50,
             'idleTimeoutMillis': 30000
         }
-    },
-    'app_identity': {
-        'id': 'www-client',
-        'key': 'test12345'
-    },
-    oauth_server: {
-        grants: ['password', 'refresh_token'],
-        debug: true,
-        accessTokenLifetime: 3600,
-        refreshTokenLifetime: 1209600
     }
 };
+
+export default serverConfig;

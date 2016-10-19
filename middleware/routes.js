@@ -4,13 +4,13 @@ import pg from 'pg';
 import koaBodyParser from 'koa-bodyparser';
 import apiRoutes from './routes/';
 import sendFile from './sendFile';
-import configurePgPool from '../libs/configurePgPool';
+import pgPoolConfig from '../config/pgPool.config';
 
 const
     router = new Router(),
     { welcomeRoute, getRoute, postRoute, putRoute, deleteRoute } = apiRoutes,
 
-    pool = configurePgPool(pg),
+    pool = pgPoolConfig(pg),
     oneMonth = 1000 * 60 * 60 * 24 * 30,
     sendFavicon = sendFile('public/favicon.ico', oneMonth),
     sendRobotsTxt = sendFile('public/robots.txt', oneMonth),
