@@ -22,7 +22,11 @@ const
         const
             parser = convert(koaBodyParser()),
             grant = convert(app.OAuthServer.grant()),
-            authorize = convert(app.OAuthServer.authorise());
+            authorize = convert(app.OAuthServer.authorise()),
+            get = getRoute(pool),
+            post = postRoute(pool),
+            put = putRoute(pool),
+            del = deleteRoute(pool);
 
         router
             .post('/oauth2/token/', parser, grant)
@@ -32,10 +36,10 @@ const
             .get('/robots.txt', sendRobotsTxt)
 
             .get('/api/v1/', authorize, welcomeRoute)
-            .get('/api/v1/:entity/:method/', authorize, getRoute(pool))
-            .post('/api/v1/:entity/', authorize, postRoute(pool))
-            .put('/api/v1/:entity/', authorize, putRoute(pool))
-            .delete('/api/v1/:entity/', authorize, deleteRoute(pool));
+            .get('/api/v1/:entity/:method/', authorize, get)
+            .post('/api/v1/:entity/', authorize, post)
+            .put('/api/v1/:entity/', authorize, put)
+            .delete('/api/v1/:entity/', authorize, del);
 
         return {
             routes,
