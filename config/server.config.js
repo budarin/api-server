@@ -1,6 +1,6 @@
 const serverConfig = {
     'development': {
-        'port': 80,
+        'port': 3000,
         'pg_config': {
             'database': 'kometa_db',
             'user': 'api_user',

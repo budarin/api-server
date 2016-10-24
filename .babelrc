@@ -1,7 +1,6 @@
 {
   "presets": ["node6"],
   "plugins": [
-    "babel-plugin-transform-es2015-destructuring",
     "transform-object-rest-spread",
     "transform-async-to-generator",
     "syntax-async-functions"
