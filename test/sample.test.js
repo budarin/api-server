@@ -1,10 +1,10 @@
-let app = require(__dirname + '/../server');
-let request = require('supertest');
+import app from '../server';
+import request from 'supertest';
 
 app.address = () => ({ address: 'http://localhost', port: 3333 });
 
 describe('GET /', function () {
-    it('should contain text "Hello, Express!"', function (done) {
+    it('should contain text welcome message', function (done) {
         request(app)
             .get('/')
             .expect('{"message":"Welcome!","doc":"http://localhost/doc","resultCode":"Ok"}', done)
