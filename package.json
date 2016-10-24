@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha 'test/**/*.test.js'",
+    "cover": "NODE_ENV=test istanbul cover ./node_modules/.bin/mocha 'test/**/*.test.js' --report --dir ./coverage/",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "upgrade": "ncu -u",
@@ -59,6 +60,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-node6": "^11.0.0",
     "babel-register": "^6.16.3",
+    "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
     "nsp": "^2.6.2",
     "nsp-formatter-checkstyle": "^1.0.1",
