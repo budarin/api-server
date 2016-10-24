@@ -4,8 +4,8 @@
   "description": "api-server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha 'test/**/*.js'",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "upgrade": "ncu -u",
@@ -63,6 +63,7 @@
     "nsp": "^2.6.2",
     "nsp-formatter-checkstyle": "^1.0.1",
     "should": "^11.1.1",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "supertest": "^2.0.1"
   }
 }
