@@ -35,7 +35,7 @@ const
             .get('/favicon.ico', sendFavicon)
             .get('/robots.txt', sendRobotsTxt)
 
-            .get('/api/v1/', authorize, welcomeRoute)
+            .get('/api/v1/', welcomeRoute)
             .get('/api/v1/:entity/:method/', authorize, get)
             .post('/api/v1/:entity/', authorize, post)
             .put('/api/v1/:entity/', authorize, put)
