@@ -1,4 +1,4 @@
-import oauthConfig from './oauth2.config';
+import memoryDB from './memoryDB';
 
 const ACCESS_PREFIX = 'access.';
 const REFRESH_PREFIX = 'refresh.';
@@ -32,8 +32,8 @@ const getRefreshToken = async (bearerToken, callback) => {
 /*
  * Get client
  */
-const getClient = (clientId, clientSecret, callback) => {
-    const client = oauthConfig.allowedClients[clientId];
+const getClient = async (clientId, clientSecret, callback) => {
+    const client = await Promise.resolve(memoryDB.allowedClients[clientId]);
 
     if (client && (clientSecret === null || client.clientSecret === clientSecret)) {
         return callback(false, client);
@@ -45,8 +45,8 @@ const getClient = (clientId, clientSecret, callback) => {
 /*
  * Get corresponding client's allowed grant type.
  */
-const grantTypeAllowed = (clientId, grantType, callback) => {
-    const allowedGrantTypeClients = oauthConfig.authorizedClientIds[grantType];
+const grantTypeAllowed = async (clientId, grantType, callback) => {
+    const allowedGrantTypeClients = await Promise.resolve(memoryDB.authorizedClientIds[grantType]);
 
     return callback(false, allowedGrantTypeClients && allowedGrantTypeClients.includes(clientId));
 };
@@ -54,13 +54,13 @@ const grantTypeAllowed = (clientId, grantType, callback) => {
 /*
  * Save the access token
  */
-const saveAccessToken = (accessToken, clientId, expires, userId, callback) => {
-    const token = {
+const saveAccessToken = async (accessToken, clientId, expires, userId, callback) => {
+    const token = await Promise.resolve({
         accessToken,
         clientId,
         userId,
         expires,
-    };
+    });
 
     const cacheKey = `${ACCESS_PREFIX}${accessToken}`;
 
@@ -70,13 +70,13 @@ const saveAccessToken = (accessToken, clientId, expires, userId, callback) => {
 /*
  *  Save the refresh token
  */
-const saveRefreshToken = (refreshToken, clientId, expires, userId, callback) => {
-    const token = {
+const saveRefreshToken = async (refreshToken, clientId, expires, userId, callback) => {
+    const token = await Promise.resolve({
         refreshToken,
         clientId,
         userId,
         expires,
-    };
+    });
 
     const cacheKey = `${REFRESH_PREFIX}${refreshToken}`;
 
@@ -86,8 +86,8 @@ const saveRefreshToken = (refreshToken, clientId, expires, userId, callback) => 
 /*
  *  Get user
  */
-const getUser = (username, password, callback) => {
-    const user = oauthConfig.users[username];
+const getUser = async (username, password, callback) => {
+    const user = await Promise.resolve(memoryDB.users[username]);
 
     if (user && user.password === password) {
         return callback(false, user);

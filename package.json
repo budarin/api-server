@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha 'test/**/*.test.js'",
-    "cover": "NODE_ENV=test istanbul cover ./node_modules/.bin/mocha 'test/**/*.test.js' --report lcovonly --dir ./coverage/",
+    "test": "better-npm-run test",
+    "cover": "better-npm-run coverage",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "upgrade": "ncu -u",
@@ -14,6 +14,18 @@
     "start:prod": "better-npm-run build-server && better-npm-run start-prod"
   },
   "betterScripts": {
+    "coverage": {
+      "command": "istanbul cover ./node_modules/.bin/mocha 'test/**/*.test.js' --report lcovonly --dir ./coverage/",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test": {
+      "command": "sh ./node_modules/.bin/mocha 'test/**/*.test.js'",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
     "build-server": {
       "command": "sh ./scripts/build.sh",
       "env": {
