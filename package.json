@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "better-npm-run test",
-    "cover": "better-npm-run coverage",
+    "coverage": "better-npm-run coverage",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "upgrade": "ncu -u",
