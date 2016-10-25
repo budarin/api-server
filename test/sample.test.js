@@ -3,7 +3,7 @@ import request from 'supertest';
 
 app.address = () => ({
     address: 'http://localhost',
-    port
+    port: 3333
 });
 
 describe('GET /', function () {

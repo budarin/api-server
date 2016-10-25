@@ -13,10 +13,11 @@ const
     app = new Koa(),
     log = getLogger(module),
     env_config = serverConfig[app.env],
-    { port } = env_config,
-    { routes, allowedMethods } = apiRoutes(app);
+    { port } = env_config;
 
 app.OAuthServer = OAuthServer(OAuthServerConfig);
+
+const { routes, allowedMethods } = apiRoutes(app);
 
 app
     .use(logger)
