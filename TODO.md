@@ -1,1 +1,2 @@
 - навесить хук post-merge на изменение в package.json на запуск yarn install
+- настроить istanbul под Windows
