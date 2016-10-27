@@ -22,7 +22,7 @@
       }
     },
     "test": {
-      "command": "sh ./node_modules/.bin/mocha 'test/**/*.test.js'",
+      "command": "./node_modules/.bin/mocha 'test/**/*.test.js'",
       "env": {
         "NODE_ENV": "test"
       }

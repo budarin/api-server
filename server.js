@@ -17,8 +17,7 @@ const
 
 app.OAuthServer = OAuthServer(OAuthServerConfig);
 
-const
-    { routes, allowedMethods } = apiRoutes(app);
+const { routes, allowedMethods } = apiRoutes(app);
 
 app
     .use(logger)
