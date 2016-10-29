@@ -7,7 +7,9 @@ const REFRESH_PREFIX = 'refresh.';
  * Get access token
  */
 const getAccessToken = async (bearerToken, callback) => {
-    const token = await Promise.resolve('8a85026205ce364f427e5f371092b225ac251d63');
+    const token = await Promise.resolve({
+        accessToken: '8a85026205ce364f427e5f371092b225ac251d63'
+    });
 
     if (token) {
         return callback(false, token);
@@ -20,7 +22,13 @@ const getAccessToken = async (bearerToken, callback) => {
  * Get refresh token
  */
 const getRefreshToken = async (bearerToken, callback) => {
-    const token = await Promise.resolve('9cec634a252054d6c4edaa07d9324ca7a0bdec9f');
+    const token = await Promise.resolve({
+        refreshToken: '9cec634a252054d6c4edaa07d9324ca7a0bdec9f',
+        ...memoryDB.allowedClients['trackr'],
+        expires: Date.now + 1000,
+        user: memoryDB.users['admin'],
+        userId: memoryDB.users['admin'].id
+    });
 
     if (token) {
         return callback(false, token);
@@ -94,6 +102,12 @@ const getUser = async (username, password, callback) => {
     }
 
     return callback(false, false);
+};
+
+const revokeRefreshToken = async (token, callback) => {
+    await Promise.resolve(memoryDB.users[username]);
+
+    return callback(token);
 };
 
 export default {
