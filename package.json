@@ -34,7 +34,7 @@
       }
     },
     "test": {
-      "command": "./node_modules/.bin/mocha 'test/**/*.test.js'",
+      "command": "./node_modules/.bin/mocha --harmony 'test/**/*.test.js'",
       "env": {
         "NODE_ENV": "test"
       }
