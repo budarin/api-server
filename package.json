@@ -3,6 +3,18 @@
   "version": "1.0.0",
   "description": "api-server",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/budarin/api-server.git"
+  },
+  "author": "Vadim Budarin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/budarin/api-server/issues"
+  },
+  "engines": {
+    "node": ">=7.0"
+  },
   "scripts": {
     "start": "node --harmony index.js",
     "test": "better-npm-run test",
@@ -39,15 +51,6 @@
         "NODE_ENV": "production"
       }
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/budarin/api-server.git"
-  },
-  "author": "Vadim Budarin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/budarin/api-server/issues"
   },
   "homepage": "https://github.com/budarin/api-server#readme",
   "dependencies": {
