@@ -2,7 +2,7 @@ import convert from 'koa-convert';
 import Router from 'koa-router';
 import pg from 'pg';
 import koaBodyParser from 'koa-bodyparser';
-import apiRoutes from './routes/';
+import apiRoutes from '../routes/';
 import sendFile from './sendFile';
 import pgPoolConfig from '../config/pgPool.config';
 
