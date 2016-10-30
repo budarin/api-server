@@ -1,4 +1,6 @@
 # api-server
+[![Build Status](https://travis-ci.org/budarin/api-server?branch=master)](https://travis-ci.org/budarin/api-server)
+
 API server with OAuth authorization
 
 Используемые технологии и библиотеки
