@@ -5,7 +5,7 @@ import OAuthServer from 'koa-oauth-server';
 import OAuthServerConfig from './oauth_server/config';
 import CORSConfig from './config/cors.config';
 import serverConfig from './config/server.config';
-import getLogger from './libs/getLogger';
+import getLogger from './utils/getLogger';
 import logger from './middleware/logger';
 import apiRoutes from './middleware/routes';
 
@@ -17,8 +17,7 @@ const
 
 app.OAuthServer = OAuthServer(OAuthServerConfig);
 
-const
-    { routes, allowedMethods } = apiRoutes(app);
+const { routes, allowedMethods } = apiRoutes(app);
 
 app
     .use(logger)

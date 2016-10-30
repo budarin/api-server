@@ -3,17 +3,42 @@
   "version": "1.0.0",
   "description": "api-server",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/budarin/api-server.git"
+  },
+  "author": "Vadim Budarin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/budarin/api-server/issues"
+  },
+  "engines": {
+    "node": ">=7.0"
+  },
   "scripts": {
-    "start": "node index.js",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha 'test/**/*.test.js'",
-    "cover": "NODE_ENV=test istanbul cover ./node_modules/.bin/mocha 'test/**/*.test.js' --report lcovonly --dir ./coverage/",
+    "start": "node --harmony index.js",
+    "test": "better-npm-run test",
+    "coverage": "better-npm-run coverage",
     "check-security": "nsp check --output summary",
     "check-security-formatted": "nsp check --output checkstyle",
     "upgrade": "ncu -u",
     "prod": "better-npm-run build-server",
-    "start:prod": "better-npm-run build-server && better-npm-run start-prod"
+    "start:prod": "better-npm-run build-server && better-npm-run start-prod",
+    "postinstall": "npm install -g npm-check-updates"
   },
   "betterScripts": {
+    "coverage": {
+      "command": "istanbul cover ./node_modules/.bin/mocha 'test/**/*.test.js' --report lcovonly --dir ./coverage/",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test": {
+      "command": "./node_modules/.bin/mocha --harmony 'test/**/*.test.js'",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
     "build-server": {
       "command": "sh ./scripts/build.sh",
       "env": {
@@ -27,19 +52,10 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/budarin/api-server.git"
-  },
-  "author": "Vadim Budarin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/budarin/api-server/issues"
-  },
   "homepage": "https://github.com/budarin/api-server#readme",
   "dependencies": {
-    "babel-plugin-transform-es2015-destructuring": "^6.16.0",
-    "better-npm-run": "0.0.11",
+    "babel-plugin-transform-es2015-destructuring": "^6.18.0",
+    "better-npm-run": "0.0.12",
     "koa": "^2.0.0-alpha.7",
     "koa-body": "^1.6.0",
     "koa-bodyparser": "^2.2.0",
@@ -54,12 +70,10 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
-    "babel-cli": "^6.16.0",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-cli": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-node6": "^11.0.0",
-    "babel-register": "^6.16.3",
+    "babel-register": "^6.18.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.1.2",
     "nsp": "^2.6.2",

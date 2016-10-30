@@ -1,5 +1,5 @@
 import config from './server.config';
-import getLogger from '../libs/getLogger';
+import getLogger from '../utils/getLogger';
 
 const
     env = process.env.NODE_ENV || 'development',
