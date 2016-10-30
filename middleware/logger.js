@@ -1,5 +1,5 @@
 import requestIp from 'request-ip';
-import getLogger from '../libs/getLogger';
+import getLogger from '../utils/getLogger';
 
 const
     log = getLogger(module),

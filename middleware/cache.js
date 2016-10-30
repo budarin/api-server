@@ -1,4 +1,4 @@
-import setCacheHeader from '../libs/setCacheHeader';
+import setCacheHeader from '../utils/setCacheHeader';
 
 /**
  * кэширование контента на указанное количество секунд
