@@ -1,5 +1,5 @@
 # api-server
-[![Build Status](https://travis-ci.org/budarin/api-server?branch=master)](https://travis-ci.org/budarin/api-server)
+[![Build Status](https://travis-ci.org/budarin/api-server.svg?branch=master)](https://travis-ci.org/budarin/api-server.svg?branch=master)
 
 API server with OAuth authorization
 
