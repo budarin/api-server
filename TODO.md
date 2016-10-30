@@ -1,5 +1,6 @@
 - навесить хук post-merge на изменение в package.json на запуск yarn install
 - настроить istanbul под Windows
+- на время теста подменять dbQuery на тестовую функцию (возвращающую тестовые данные для тестов)
 
 ### 1.0.2
 - add support Yandex Key QR Code athorization
