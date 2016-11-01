@@ -1,5 +1,5 @@
-import dbQuery from '../../utils/dbQuery';
-import setCacheHeader from '../../utils/setCacheHeader';
+import dbQuery from '../utils/dbQuery';
+import setCacheHeader from '../utils/setCacheHeader';
 
 export default pool => async (ctx) => {
     const
