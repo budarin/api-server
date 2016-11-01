@@ -2,12 +2,12 @@ import Koa from 'koa';
 import convert from 'koa-convert';
 import CORS from 'koa-cors';
 import OAuthServer from 'koa-oauth-server';
-import OAuthServerConfig from './oauth_server/config';
-import CORSConfig from './config/cors.config';
-import serverConfig from './config/server.config';
-import getLogger from './utils/getLogger';
-import logger from './middleware/logger';
-import apiRoutes from './middleware/routes';
+import OAuthServerConfig from '../oauth_server/config';
+import CORSConfig from '../config/cors.config';
+import serverConfig from '../config/server.config';
+import getLogger from '../utils/getLogger';
+import logger from '../middleware/logger';
+import apiRoutes from '../middleware/routes';
 
 const
     app = new Koa(),

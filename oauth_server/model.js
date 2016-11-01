@@ -1,4 +1,5 @@
 import memoryDB from './memoryDB';
+import cacheService from '../server/redis_client';
 
 const ACCESS_PREFIX = 'access.';
 const REFRESH_PREFIX = 'refresh.';
@@ -7,6 +8,9 @@ const REFRESH_PREFIX = 'refresh.';
  * Get access token
  */
 const getAccessToken = async (bearerToken, callback) => {
+    const token1 = await cacheService.asyncGet(`${ACCESS_PREFIX}${bearerToken}`);
+    console.log(token1);
+
     const token = await Promise.resolve({
         accessToken: '8a85026205ce364f427e5f371092b225ac251d63',
         expires: Date.now + 1000
