@@ -1,18 +1,21 @@
 import redis from 'redis';
 import redisUrl from '../config/redis.config';
+import getLogger from '../utils/getLogger';
 
-const client = redis.createClient(redisUrl);
+const
+    client = redis.createClient(redisUrl),
+    log = getLogger(module);
 
 client.select(1, () => {
-    console.log('Using redis database 1.'); // eslint-disable-line no-console
+    log.info('Using redis database 1.'); // eslint-disable-line no-console
 });
 
 client.on('ready', () => {
-    console.log('redis server ready!'); // eslint-disable-line no-console
+    log.info('redis server ready!'); // eslint-disable-line no-console
 });
 
 client.on('error', (err) => {
-    console.log('Error: ', err); // eslint-disable-line no-console
+    log.error('Error: ', err); // eslint-disable-line no-console
 });
 
 client.asyncGet = (key) =>

@@ -1,5 +1,5 @@
-import memoryDB from './memoryDB';
-import cacheService from '../server/redis_client';
+import memoryDB from '../test/memoryDB';
+import cacheService from './redis';
 
 const ACCESS_PREFIX = 'access.';
 const REFRESH_PREFIX = 'refresh.';
@@ -13,7 +13,8 @@ const getAccessToken = async (bearerToken, callback) => {
 
     const token = await Promise.resolve({
         accessToken: '8a85026205ce364f427e5f371092b225ac251d63',
-        expires: Date.now + 1000
+        expires: Date.now + 1000,
+        scope: 'admin'
     });
 
     if (token) {
@@ -122,5 +123,6 @@ export default {
     grantTypeAllowed,
     saveAccessToken,
     saveRefreshToken,
+    revokeRefreshToken,
     getUser
 };
