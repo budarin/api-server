@@ -4,6 +4,7 @@ const oauthConfig = {
       clientId: 'trackr',
       clientSecret: 'admin',
       redirectUri: '',
+      scope: 'admin'
     },
   },
   authorizedClientIds: {
