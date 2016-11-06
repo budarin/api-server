@@ -7,15 +7,15 @@ const
     log = getLogger(module);
 
 client.select(1, () => {
-    log.info('Using redis database 1.'); // eslint-disable-line no-console
+    log.info('Using redis database 1.');
 });
 
 client.on('ready', () => {
-    log.info('redis server ready!'); // eslint-disable-line no-console
+    log.info('redis server ready!');
 });
 
 client.on('error', (err) => {
-    log.error('Error: ', err); // eslint-disable-line no-console
+    log.error('Error: ', err);
 });
 
 client.asyncGet = (key) =>

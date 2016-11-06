@@ -17,10 +17,7 @@ const
     env_config = serverConfig[app.env],
     { port } = env_config;
 
-app.OAuthServer = OAuthServer({
-    model,
-    ...oauthConfig
-});
+app.OAuthServer = OAuthServer({ model, ...oauthConfig });
 
 const { routes, allowedMethods } = apiRoutes(app);
 
@@ -29,7 +26,6 @@ app
     .use(corsMiddleware)
     .use(routes())
     .use(allowedMethods())
-
     .listen(port, () => log.info(`server started ${port}`));
 
 export default app;

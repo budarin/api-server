@@ -11,7 +11,9 @@ const
         try {
             await next();
 
-            if (ctx.status === 404) { ctx.throw(404); }
+            if (ctx.status === 404) {
+                ctx.throw(404);
+            }
         } catch (err) {
             if (err.status === 404) {
                 log.error(`Url not found: ${ctx.url}`);
@@ -35,6 +37,7 @@ const
         }
 
         const ms = new Date() - start;
+
         log.info(`${IP} ${ ctx.method } ${ ctx.url } - ${ ms }ms`);
     };
 
