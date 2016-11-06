@@ -1,6 +1,6 @@
 import redis from 'redis';
-import redisUrl from '../config/redis.config';
-import getLogger from '../utils/getLogger';
+import redisUrl from './config/redis.config';
+import getLogger from './utils/getLogger';
 
 const
     client = redis.createClient(redisUrl),
