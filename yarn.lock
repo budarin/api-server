@@ -351,9 +351,9 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-better-npm-run@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/better-npm-run/-/better-npm-run-0.0.12.tgz#0b456c2e711e8f99046d09c950f8ac3a3bfd9470"
+better-npm-run@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/better-npm-run/-/better-npm-run-0.0.13.tgz#38a340d0546c831ce80bae66d4def19c5c7ee963"
   dependencies:
     dotenv "^2.0.0"
     object-assign "^4.0.1"
