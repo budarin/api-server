@@ -4,7 +4,7 @@ rm -r -f ./build
 
 mkdir ./build
 
-./node_modules/.bin/babel server.js --out-file ./build/server.js
+./node_modules/.bin/babel index.js --out-file ./build/server.js
 
 mkdir ./build/libs
 ./node_modules/.bin/babel ./libs/log.js --out-file ./build/libs/log.js

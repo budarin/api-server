@@ -1,4 +1,4 @@
-import app from '../server/server';
+import app from '../server/index';
 import request from 'supertest';
 
 app.address = () => ({

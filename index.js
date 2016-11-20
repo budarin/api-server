@@ -7,4 +7,4 @@ require("babel-register")({
         }]
     ]
 });
-require("./server/server.js");
+require("./server/index.js");
